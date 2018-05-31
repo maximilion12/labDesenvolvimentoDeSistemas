@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Exercicio.Models.Filme>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.verba)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtGravacaoInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtGravacaoFim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diretor.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documentario.assunto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produtor.nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.verba)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtGravacaoInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtGravacaoFim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diretor.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Documentario.assunto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produtor.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

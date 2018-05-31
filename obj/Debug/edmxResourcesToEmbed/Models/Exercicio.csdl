@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExercicioLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ator">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Atuacao" Relationship="Self.FK_Atuacao_Ator" FromRole="Ator" ToRole="Atuacao" />
+  </EntityType>
+  <EntityType Name="Atuacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idAtor" Type="Int32" Nullable="false" />
+    <Property Name="idFilme" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ator" Relationship="Self.FK_Atuacao_Ator" FromRole="Atuacao" ToRole="Ator" />
+    <NavigationProperty Name="Filme" Relationship="Self.FK_Atuacao_Filme" FromRole="Atuacao" ToRole="Filme" />
+  </EntityType>
+  <EntityType Name="Diretor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="endereço" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Filme" Relationship="Self.FK_Filme_Diretor" FromRole="Diretor" ToRole="Filme" />
+  </EntityType>
+  <EntityType Name="Documentario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idFilme" Type="Int32" Nullable="false" />
+    <Property Name="assunto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Filme" Relationship="Self.FK_Documentario_Filme" FromRole="Documentario" ToRole="Filme" />
+  </EntityType>
+  <EntityType Name="Filme">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="verba" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="dtGravacaoInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtGravacaoFim" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idDireto" Type="Int32" />
+    <Property Name="idProdutor" Type="Int32" />
+    <NavigationProperty Name="Atuacao" Relationship="Self.FK_Atuacao_Filme" FromRole="Filme" ToRole="Atuacao" />
+    <NavigationProperty Name="Diretor" Relationship="Self.FK_Filme_Diretor" FromRole="Filme" ToRole="Diretor" />
+    <NavigationProperty Name="Documentario" Relationship="Self.FK_Documentario_Filme" FromRole="Filme" ToRole="Documentario" />
+    <NavigationProperty Name="Produtor" Relationship="Self.FK_Filme_Produtor" FromRole="Filme" ToRole="Produtor" />
+    <NavigationProperty Name="LongaMetragem" Relationship="Self.FK_LongaMetragem_Filme" FromRole="Filme" ToRole="LongaMetragem" />
+  </EntityType>
+  <EntityType Name="LongaMetragem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idFilme" Type="Int32" Nullable="false" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Filme" Relationship="Self.FK_LongaMetragem_Filme" FromRole="LongaMetragem" ToRole="Filme" />
+  </EntityType>
+  <EntityType Name="Produtor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Filme" Relationship="Self.FK_Filme_Produtor" FromRole="Produtor" ToRole="Filme" />
+  </EntityType>
+  <Association Name="FK_Atuacao_Ator">
+    <End Role="Ator" Type="Self.Ator" Multiplicity="1" />
+    <End Role="Atuacao" Type="Self.Atuacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ator">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Atuacao">
+        <PropertyRef Name="idAtor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Atuacao_Filme">
+    <End Role="Filme" Type="Self.Filme" Multiplicity="1" />
+    <End Role="Atuacao" Type="Self.Atuacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Atuacao">
+        <PropertyRef Name="idFilme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filme_Diretor">
+    <End Role="Diretor" Type="Self.Diretor" Multiplicity="0..1" />
+    <End Role="Filme" Type="Self.Filme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diretor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Filme">
+        <PropertyRef Name="idDireto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentario_Filme">
+    <End Role="Filme" Type="Self.Filme" Multiplicity="1" />
+    <End Role="Documentario" Type="Self.Documentario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Filme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentario">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Filme_Produtor">
+    <End Role="Produtor" Type="Self.Produtor" Multiplicity="0..1" />
+    <End Role="Filme" Type="Self.Filme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produtor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Filme">
+        <PropertyRef Name="idProdutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LongaMetragem_Filme">
+    <End Role="Filme" Type="Self.Filme" Multiplicity="1" />
+    <End Role="LongaMetragem" Type="Self.LongaMetragem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LongaMetragem">
+        <PropertyRef Name="idFilme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExercicioLabEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ator" EntityType="Self.Ator" />
+    <EntitySet Name="Atuacao" EntityType="Self.Atuacao" />
+    <EntitySet Name="Diretor" EntityType="Self.Diretor" />
+    <EntitySet Name="Documentario" EntityType="Self.Documentario" />
+    <EntitySet Name="Filme" EntityType="Self.Filme" />
+    <EntitySet Name="LongaMetragem" EntityType="Self.LongaMetragem" />
+    <EntitySet Name="Produtor" EntityType="Self.Produtor" />
+    <AssociationSet Name="FK_Atuacao_Ator" Association="Self.FK_Atuacao_Ator">
+      <End Role="Ator" EntitySet="Ator" />
+      <End Role="Atuacao" EntitySet="Atuacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Atuacao_Filme" Association="Self.FK_Atuacao_Filme">
+      <End Role="Filme" EntitySet="Filme" />
+      <End Role="Atuacao" EntitySet="Atuacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filme_Diretor" Association="Self.FK_Filme_Diretor">
+      <End Role="Diretor" EntitySet="Diretor" />
+      <End Role="Filme" EntitySet="Filme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentario_Filme" Association="Self.FK_Documentario_Filme">
+      <End Role="Filme" EntitySet="Filme" />
+      <End Role="Documentario" EntitySet="Documentario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Filme_Produtor" Association="Self.FK_Filme_Produtor">
+      <End Role="Produtor" EntitySet="Produtor" />
+      <End Role="Filme" EntitySet="Filme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LongaMetragem_Filme" Association="Self.FK_LongaMetragem_Filme">
+      <End Role="Filme" EntitySet="Filme" />
+      <End Role="LongaMetragem" EntitySet="LongaMetragem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

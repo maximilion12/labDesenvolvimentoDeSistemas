@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExercicioLabModelStoreContainer" CdmEntityContainer="ExercicioLabEntities">
+    <EntitySetMapping Name="Ator">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Ator">
+        <MappingFragment StoreEntitySet="Ator">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Atuacao">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Atuacao">
+        <MappingFragment StoreEntitySet="Atuacao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAtor" ColumnName="idAtor" />
+          <ScalarProperty Name="idFilme" ColumnName="idFilme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diretor">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Diretor">
+        <MappingFragment StoreEntitySet="Diretor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="endereço" ColumnName="endereço" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentario">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Documentario">
+        <MappingFragment StoreEntitySet="Documentario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idFilme" ColumnName="idFilme" />
+          <ScalarProperty Name="assunto" ColumnName="assunto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Filme">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Filme">
+        <MappingFragment StoreEntitySet="Filme">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="verba" ColumnName="verba" />
+          <ScalarProperty Name="dtGravacaoInicio" ColumnName="dtGravacaoInicio" />
+          <ScalarProperty Name="dtGravacaoFim" ColumnName="dtGravacaoFim" />
+          <ScalarProperty Name="idDireto" ColumnName="idDireto" />
+          <ScalarProperty Name="idProdutor" ColumnName="idProdutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LongaMetragem">
+      <EntityTypeMapping TypeName="ExercicioLabModel.LongaMetragem">
+        <MappingFragment StoreEntitySet="LongaMetragem">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idFilme" ColumnName="idFilme" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produtor">
+      <EntityTypeMapping TypeName="ExercicioLabModel.Produtor">
+        <MappingFragment StoreEntitySet="Produtor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

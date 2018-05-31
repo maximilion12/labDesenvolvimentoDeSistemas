@@ -1,0 +1,67 @@
+﻿@model Exercicio.Models.Filme
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Filme</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.verba)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.verba)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtGravacaoInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtGravacaoInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtGravacaoFim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtGravacaoFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diretor.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diretor.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentario.assunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Documentario.assunto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produtor.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produtor.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
